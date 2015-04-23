@@ -1,0 +1,43 @@
+<h2><%= @place.title %></h2>
+<p>
+	<%= link_to "Edit","/places/#{@place.id}/edit" %>
+<br>
+<div>
+	Admission Price: <%= number_to_currency(@place.admission_price/100.0, precision:2) %>
+</div>
+<br>
+<div>
+	<div>
+		<%= image_tag @place.photo_url, :class=>"show_image" %>
+	</div>
+	<br>
+	<div>
+		<%= @place.description %>
+	</div>
+</div>
+
+<div>
+	<h3>Reviews</h3>
+	<h4>Write New Review</h4>
+	<form action = "/places/<%= @place.id %>/reviews/add" id="review_form">
+		<%= select_tag "rating", options_for_select({"5 star"=> 5, "4 star"=>4, "3 star"=>3, "2 star"=>2, "1 star"=>1, "0 star"=> 0},"5") %><br>
+		<input name="title" placeholder="Title"><br>
+		<textarea name="description" rows="3" cols="70"></textarea><br>
+		<button>Submit</button>
+		
+	</form>
+	<br>
+	<div>
+		<% @reviews.each do |review| %>
+		<div>
+			<%= review.title %>
+			<% for i in 1..review.rating %>
+			<%= image_tag 'http://www.martom24.pl/zdjecia/MP/maxi/star.png', :class => "star_style" %>
+			<% end %><br>
+			
+			<%= review.description %><br><br><br>
+		</div>
+		<% end %>
+	</div>
+
+</div>

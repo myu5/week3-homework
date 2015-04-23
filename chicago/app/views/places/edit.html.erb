@@ -1,0 +1,13 @@
+<h2>Editing <%= @place.title %></h2>
+
+<form action="/places/<%= @place.id %>/update" id="place_form">
+	Place Name<br>
+	<input name = "title" value = "<%= @place.title %>"><br>
+	Image URL<br>
+	<input name = "photo_url" value = "<%= @place.photo_url %>"><br>
+	Price<br>
+	<input type = "number" name="admission_price" value = "<%= @place.admission_price %>"><br> 
+</form>
+Description<br>
+<textarea name="description" form="place_form" rows="10" cols="70"><%= @place.description %></textarea><br>
+<button form= "place_form">Update</button>

@@ -1,0 +1,10 @@
+<h4><%= link_to "Add a New Place", "/places/new" %></h4>
+<ul>
+	<% @places.each do |place| %>
+	<li>
+		<%= link_to place.title, "/places/#{place.id}" %>
+		(<%= number_to_currency(place.admission_price/100.0, precision: 2)%>)
+		<%= link_to "(delete)", "/places/#{place.id}/delete" %>
+	</li>
+	<% end %>
+</ul>
